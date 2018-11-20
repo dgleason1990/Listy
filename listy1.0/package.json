@@ -1,0 +1,34 @@
+{
+  "name": "listy1.0",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^0.3.0",
+    "axios": "^0.18.0",
+    "chart.js": "^2.7.3",
+    "mo-js": "^0.288.2",
+    "react": "^16.6.3",
+    "react-anime": "^2.2.0",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "recharts": "^1.4.1",
+    "speech-to-text": "^0.7.4",
+    "victory": "^31.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
