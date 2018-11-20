@@ -101,7 +101,7 @@ const read = (text) => {
 })};
 
 app.post('/read', async (req,res)=>{
-    let text = 'Good Day Mate. I hope your ready for some cooking! ' + req.body.text + 'Although I would rather shrimp on the barbie, enjoy your meal! Cheers, mate';
+    let text = 'Good Day Mate. I hope your ready for some cooking! ' + req.body.text + 'To be honest... I would rather shrimp on the barbie, enjoy your meal! Cheers, mate';
     let recievedFile = await read(text);
     try {
         res.send('Message received');

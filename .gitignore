@@ -1,3 +1,3 @@
 node_modules/
 headers.js
-key_file.json
+**/key_file.json
