@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@google-cloud/text-to-speech": "^0.3.0",
     "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "mo-js": "^0.288.2",

@@ -4,24 +4,6 @@ import Recipes from './Recipes';
 import SpeechToText from 'speech-to-text';
 import Loading from './Loading';
 
-// onFinalised = text => {
-//     let ingredientsArray = text.split(' ').map((ingredient)=> {
-//         return ingredient.trim()
-//     });
-//     let ingredientsObject = {
-//         ingredients: ingredientsArray
-//     }
-//     axios.post('http://localhost:8080/recipes', ingredientsObject)
-//     .then(recipes => {
-//         console.log(recipes.data);
-//         this.setState({
-//             recipes: recipes.data
-//         });
-//     })
-// };
-
-
-
 export default class Home extends Component {
     state = {
        recipes: [],
@@ -87,7 +69,7 @@ export default class Home extends Component {
     return (
         <div className="groceryList">
         <div className='search'>
-            <img src='/Assets/Pictures/bread-head.jpg' />
+            <img src='https://i.pinimg.com/originals/f4/a6/2c/f4a62c174c1372f04a07419a801aa8bc.gif' />
             <form onSubmit={this.onSubmit}>
                 <label>
                     <h1 className='hero-text'>Enter Ingredients</h1>

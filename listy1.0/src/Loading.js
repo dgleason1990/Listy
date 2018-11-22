@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Anime from 'react-anime';
 
 export default class Loading extends Component {
