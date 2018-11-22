@@ -36,23 +36,14 @@ class RecipeData extends Component {
         }
     }
 
-    readMe = (e) => {
-        let readData = { 
-            text: this.state.data.instructions
-        };
-        axios.post('http://localhost:8080/read', readData)
-        .then((response)=>{
-            console.log(response)
-            let audio = document.getElementById('play');
-            console.log(audio);
+    readMe = () => {
+            // let audio = document.getElementById('play');
+            // console.log(audio);
             // audio.src = 'http://localhost:8080/output.mp3';
-            setTimeout(()=>{
-                audio.src = 'http://localhost:8080/output.mp3';
-                audio.play()
-            }, 3000);
-        })
-        }
-
+            // console.log(audio);
+            this.audioRef.load();
+            this.audioRef.play();
+            }
 
     displayData = () => {
         let keys = Object.keys(this.state.nutrition);
@@ -110,7 +101,7 @@ class RecipeData extends Component {
                     <div className='left-side'>
                         <img src={ this.state.data.image } />
                         <button  onClick={this.readMe}> Read me my recipe </button>
-                        <audio id='play' src='' type='audio/mpeg'>
+                        <audio ref={(ref) =>this.audioRef = ref} id='play' src='http://localhost:8080/output.mp3' type='audio/mpeg'>
                         </audio>
                         <h2>Meal Info</h2>
                         <p> Prep Time: { this.state.data.preparationMinutes } mins </p>
