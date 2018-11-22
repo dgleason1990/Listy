@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import Loading from './Loading';
-import Anime from 'react-anime';
 import axios from 'axios';
 
 

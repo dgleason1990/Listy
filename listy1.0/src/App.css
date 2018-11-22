@@ -51,7 +51,7 @@ nav a:visited {
 
 .groceryList .search img {
   width: 100%;
-  height: auto;
+  height: 100vh;
 }
 
 .groceryList .search form {
@@ -78,6 +78,8 @@ nav a:visited {
   width: 502px;
   padding: 0 5px;
   border: solid 1px grey;
+  border-top-left-radius: 2%;
+  border-bottom-left-radius: 2%;
   font-size: 1.25rem;
   opacity: 0.9;
 }
@@ -97,9 +99,11 @@ nav a:visited {
   border: solid 1px grey;
   position: relative;
   right: 2px;
-  top: 1px;
+  top: 2px;
   width: 109px;
   height: 46px;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
   background-color: whitesmoke;
 }
 
