@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import Loading from './Loading';
+import Anime from 'react-anime';
 import axios from 'axios';
 
 
@@ -95,7 +96,7 @@ class RecipeData extends Component {
     render() {
         if(Object.keys(this.state.data).length === 1) return <Loading />;
         return (
-            <div>
+            <div className='recipe-data-section'>
                 <h1 className='recipe-title'>{ this.state.data.title }</h1>
                 <div className='recipeData'>
                     <div className='left-side'>

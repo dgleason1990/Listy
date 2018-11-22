@@ -1,10 +1,10 @@
 module.exports = [
     {
-        start: "G'Day Mate. I hope your ready for some cooking! ",
+        start: "G'Day Mate. Larry the Listy Guy here! I hope your ready for some cooking! ",
         finish: ' ... To be honest... I would rather shrimp on the barbie, enjoy your meal! Cheers, mate'
     },
     {
-        start: "Oi Mate! Caught me at a good time. Just got back from a walk-about. Let's do some cooking.",
+        start: "Oi Mate! Larry the Listy guy here! Caught me at a good time. Just got back from a walk-about. Let's do some cooking.",
         finish: "...Well I'm off for another walk about! G'day Mate"
     },
     // {
