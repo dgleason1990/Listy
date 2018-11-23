@@ -35,9 +35,8 @@ class RecipeData extends Component {
     }
 
     readMe = () => {
-            this.audioRef.load('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
-            this.audioRef.play('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
-        }
+        this.audioRef.play('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
+    }
 
     displayData = () => {
         let keys = Object.keys(this.state.nutrition);
@@ -100,7 +99,7 @@ class RecipeData extends Component {
                                     <img className='speaker-img' src= "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Volume_up_font_awesome.svg/2000px-Volume_up_font_awesome.svg.png"
                                     ></img>
                                 </div>
-                                <audio ref={(ref) =>this.audioRef = ref} id='play' src='http://localhost:8080/output.mp3' type='audio/mpeg'>
+                                <audio ref={(ref) =>this.audioRef = ref} id='play' src={'http://localhost:8080/output'+this.props.match.params.id+'.mp3'} type='audio/mpeg'>
                                 </audio>
                                 <div className='flex-row'>
                                     <div>
