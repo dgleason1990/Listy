@@ -42,8 +42,8 @@ class RecipeData extends Component {
             // console.log(audio);
             // audio.src = 'http://localhost:8080/output.mp3';
             // console.log(audio);
-            this.audioRef.load('http://localhost:8080/output.mp3');
-            this.audioRef.play('http://localhost:8080/output.mp3');
+            this.audioRef.load('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
+            this.audioRef.play('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
             }
 
     displayData = () => {
@@ -102,7 +102,7 @@ class RecipeData extends Component {
                     <div className='left-side'>
                         <img src={ this.state.data.image } />
                         <button ref={(ref) => this.buttonRef = ref} onClick={this.readMe}> Read me my recipe </button>
-                        <audio ref={(ref) =>this.audioRef = ref} id='play' src='http://localhost:8080/output.mp3' type='audio/mpeg'>
+                        <audio ref={(ref) =>this.audioRef = ref} id='play' src={`http://localhost:8080/output${this.props.match.params.id}.mp3`} type='audio/mpeg'>
                         </audio>
                         <h2>Meal Info</h2>
                         <p> Prep Time: { this.state.data.preparationMinutes } mins </p>

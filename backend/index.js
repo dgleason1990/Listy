@@ -45,7 +45,7 @@ const read = async (text) => {
   }
 
 //   Write the binary audio content to a local file
-    fs.writeFile('public/output.mp3', response.audioContent, 'binary', err => {
+    fs.writeFile('public/output'+req.params.id+'.mp3', response.audioContent, 'binary', err => {
         if (err) {
         console.error('ERROR:', err);
         return;
@@ -78,18 +78,6 @@ app.post('/recipes', async (req,res)=>{
 })
 
 app.get('/recipe/:id', async (req, res) => {
-    // random = () => { 
-    //     let randomResult = Math.random() * (2-0) + 0;
-    //     return Math.floor(randomResult); 
-    //     }  
-    // const randomNumber = random();
-    // console.log(randomNumber);
-    // // const answerless = Object.assign({}, phrases[randomNumber])
-    // const start = phrases[randomNumber].start;
-    // console.log(start)
-    // const last = phrases[randomNumber].finish;
-    // let text = start + req.body.text + last;
-    // let recievedFile = await read(text);
     try {
         let configData ={
             method: 'get',
@@ -136,7 +124,7 @@ app.get('/recipe/:id', async (req, res) => {
       }
     
     //   Write the binary audio content to a local file
-    fs.writeFileSync('public/output.mp3', response.audioContent, 'binary');//, err => {
+    fs.writeFileSync('public/output'+req.params.id+'.mp3', response.audioContent, 'binary');//, err => {
         //     if (err) {
         //     console.error('ERROR:', err);
         //     return;
