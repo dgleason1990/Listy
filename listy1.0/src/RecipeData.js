@@ -3,8 +3,6 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 import Loading from './Loading';
 import axios from 'axios';
 
-
-
 class RecipeData extends Component {
     state = {
         data: {
@@ -36,21 +34,9 @@ class RecipeData extends Component {
         }
     }
 
-    readMe = (e) => {
-        let readData = { 
-            text: this.state.data.instructions
-        };
-        axios.post('http://localhost:8080/read', readData)
-        .then((response)=>{
-            console.log(response)
-            let audio = document.getElementById('play');
-            console.log(audio);
-            // audio.src = 'http://localhost:8080/output.mp3';
-            setTimeout(()=>{
-                audio.src = 'http://localhost:8080/output.mp3';
-                audio.play()
-            }, 3000);
-        })
+    readMe = () => {
+        this.audioRef.load();
+        this.audioRef.play();
     }
 
     displayData = () => {
@@ -61,10 +47,10 @@ class RecipeData extends Component {
             return { name: key, percentage: hasPercent };
         });
         return (
-          <BarChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+          <BarChart width={600} height={300} data={data}  margin={{top: 5, right: 30, left: 20, bottom: 5}}>
             <CartesianGrid strokeDasharray="3 3"/>
             <XAxis dataKey="name"/>
-            <YAxis/>
+            <YAxis domain={[0, 100]}/>
             <Tooltip/>
             <Legend />
             <Bar dataKey="percentage" fill="#ff3333" background={{ fill: '#eee' }} />
@@ -107,21 +93,34 @@ class RecipeData extends Component {
                 <h1 className='recipe-title'>{ this.state.data.title }</h1>
                 <div className='recipeData'>
                     <div className='left-side'>
-                        <img src={ this.state.data.image } />
-                        <button  onClick={this.readMe}> Read me my recipe </button>
-                        <audio id='play' src='' type='audio/mpeg'>
-                        </audio>
-                        <h2>Meal Info</h2>
-                        <p> Prep Time: { this.state.data.preparationMinutes } mins </p>
-                        <p> Cooking Time: {this.state.data.cookingMinutes} mins </p>
-                        <p> Servings: {this.state.data.servings} </p>
-                        <h2> Nutrition </h2>
-                        <p> Calories: { this.state.nutrition.calories.value } cals </p>
-                        <p> Carbs: {this.state.nutrition.carbs.value} grams</p>
-                        <p> Fat: {this.state.nutrition.fat.value} grams </p>
-                        <p> Protein: {this.state.nutrition.protein.value} grams </p>
-                        <div id="container">
-                            { this.displayData() }
+                        <img className='recipe-image' src={ this.state.data.image } />
+                        <div className='info-display'>
+                            <div className='to-center'>
+                                <div className='speak-button' onClick={this.readMe}>
+                                    <img className='speaker-img' src= "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Volume_up_font_awesome.svg/2000px-Volume_up_font_awesome.svg.png"
+                                    ></img>
+                                </div>
+                                <audio ref={(ref) =>this.audioRef = ref} id='play' src='http://localhost:8080/output.mp3' type='audio/mpeg'>
+                                </audio>
+                                <div className='flex-row'>
+                                    <div>
+                                        <h2>Meal Info</h2>
+                                        <p> Prep Time: { this.state.data.preparationMinutes } mins </p>
+                                        <p> Cooking Time: {this.state.data.cookingMinutes} mins </p>
+                                        <p> Servings: {this.state.data.servings} </p>
+                                    </div>
+                                    <div className='nutrition'>
+                                        <h2> Nutrition </h2>
+                                        <p> Calories: { this.state.nutrition.calories.value } cals </p>
+                                        <p> Carbs: {this.state.nutrition.carbs.value} grams</p>
+                                        <p> Fat: {this.state.nutrition.fat.value} grams </p>
+                                        <p> Protein: {this.state.nutrition.protein.value} grams </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="container">
+                                { this.displayData() }
+                            </div>
                         </div>
                     </div>
                     <div className='right-side'>

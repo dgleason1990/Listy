@@ -21,13 +21,15 @@ export default class Home extends Component {
             ingredients: ingredientsArray
         }
         if (ingredientsArray[ingredientsArray.length - 1] === 'submit'){
-        axios.post('http://localhost:8080/recipes', ingredientsObject)
-        .then(recipes => {
-            this.setState({
-                recipes: recipes.data,
-                listening: false
-            });
-        })}
+            this.setState({ listening: false });
+            axios.post('http://localhost:8080/recipes', ingredientsObject)
+            .then(recipes => {
+                this.setState({
+                    recipes: recipes.data,
+                    listening: false
+                });
+            })
+        }
     };
 
     onAnythingSaid = text => {
