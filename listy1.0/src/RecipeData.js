@@ -35,9 +35,9 @@ class RecipeData extends Component {
     }
 
     readMe = () => {
-        this.audioRef.load();
-        this.audioRef.play();
-    }
+            this.audioRef.load('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
+            this.audioRef.play('http://localhost:8080/output'+this.props.match.params.id+'.mp3');
+        }
 
     displayData = () => {
         let keys = Object.keys(this.state.nutrition);
@@ -82,7 +82,7 @@ class RecipeData extends Component {
             this.setState({
                 data: response.data.data,
                 nutrition: response.data.nutrition
-            });
+            }, () => this.buttonRef.click);
         });   
     }
     
@@ -96,7 +96,7 @@ class RecipeData extends Component {
                         <img className='recipe-image' src={ this.state.data.image } />
                         <div className='info-display'>
                             <div className='to-center'>
-                                <div className='speak-button' onClick={this.readMe}>
+                                <div className='speak-button' ref={(ref) => this.buttonRef = ref} onClick={this.readMe}>
                                     <img className='speaker-img' src= "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Volume_up_font_awesome.svg/2000px-Volume_up_font_awesome.svg.png"
                                     ></img>
                                 </div>

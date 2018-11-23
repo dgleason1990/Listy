@@ -14,7 +14,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.static('public', {
+    setHeaders: function(res, path) { res.set("Cache-Control", "no-cache"); }
+}));
 
 
 const fs = require('fs');
@@ -28,7 +30,7 @@ const client = new textToSpeech.TextToSpeechClient({
 });
  
 // Performs the Text-to-Speech request
-const read = (text) => {
+const read = async (text) => {
     const request = {
         input: {text: text},
         // Select the language and SSML Voice Gender (optional)
@@ -43,7 +45,7 @@ const read = (text) => {
   }
 
 //   Write the binary audio content to a local file
-    fs.writeFile('public/output.mp3', response.audioContent, 'binary', err => {
+    fs.writeFile('public/output'+req.params.id+'.mp3', response.audioContent, 'binary', err => {
         if (err) {
         console.error('ERROR:', err);
         return;
@@ -76,18 +78,6 @@ app.post('/recipes', async (req,res)=>{
 })
 
 app.get('/recipe/:id', async (req, res) => {
-    random = () => { 
-        let randomResult = Math.random() * (2-0) + 0;
-        return Math.floor(randomResult); 
-        }  
-    const randomNumber = random();
-    console.log(randomNumber);
-    // const answerless = Object.assign({}, phrases[randomNumber])
-    const start = phrases[randomNumber].start;
-    console.log(start)
-    const last = phrases[randomNumber].finish;
-    let text = start + req.body.text + last;
-    let recievedFile = await read(text);
     try {
         let configData ={
             method: 'get',
@@ -103,14 +93,13 @@ app.get('/recipe/:id', async (req, res) => {
             headers: foodApi
         }
         let nutritionData = await axios(configNutrition);
-        
         let recipieInfo = {
             data: recipeData.data,
             nutrition: nutritionData.data
         }
-        // res.json(recipieInfo);
+
         random = () => { 
-            let randomResult = Math.random() * (2-0) + 0;
+            let randomResult = Math.random() * (3-0) + 0;
             return Math.floor(randomResult); 
             }  
         const randomNumber = random();
@@ -119,8 +108,33 @@ app.get('/recipe/:id', async (req, res) => {
         console.log(start)
         const last = phrases[randomNumber].finish;
         console.log(recipeData.data.instructions);
-        let recievedFile = read(start + recipeData.data.instructions + last);
-        res.json(recipieInfo);
+        // let recievedFile = await read(start + recipeData.data.instructions + last);
+        let text = start + recipeData.data.instructions + last;
+        const request = {
+            input: {text: text},
+            // Select the language and SSML Voice Gender (optional)
+            voice: {languageCode: 'en-AU', voiceName:'en-AU-Wavenet-B', ssmlGender: 'MALE'},
+            // Select the type of audio encoding
+            audioConfig: {audioEncoding: 'MP3'},
+          };
+      client.synthesizeSpeech(request, (err, response) => {
+      if (err) {
+        console.error('ERROR:', err);
+        return;
+      }
+    
+    //   Write the binary audio content to a local file
+    fs.writeFileSync('public/output'+req.params.id+'.mp3', response.audioContent, 'binary');//, err => {
+        //     if (err) {
+        //     console.error('ERROR:', err);
+        //     return;
+        //     }
+            console.log('Audio content written to file: output.mp3');
+        //     res.json(recipieInfo);
+        // });
+    res.json(recipieInfo);
+    });
+       
     } catch (error) {
         console.log(error);
     }

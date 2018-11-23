@@ -4,11 +4,11 @@ module.exports = [
         finish: ' ... To be honest... I would rather shrimp on the barbie, enjoy your meal! Cheers, mate'
     },
     {
-        start: "Oi Mate! Larry the Listy guy here! Caught me at a good time. Just got back from a walk-about. Let's do some cooking.",
+        start: "Oi Mate! Larry the Listy guy here! Caught me at a good time. Just got back from a walk-about. Let's do some cooking...",
         finish: "...Well I'm off for another walk about! G'day Mate"
     },
-    // {
-    //     start: "What do we have here... well.... that's not kangaroo. I guess we can cook what you've got here! Let's get to cooking.... good looking....    ",
-    //     finish: "........Wait a tick......... You're cooking with that? That's not a knife.. this is a knife"
-    // }
+    {
+        start: "Hey there... Larry the Listy Guy here! Well, if it isn't my two favourite programmers, David and Jake! Let's do some cooking... ",
+        finish: "........Enjoy the meal! By the way David... nice sweater. I'm off to go find me some kangaroos"
+    }
 ]
