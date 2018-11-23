@@ -99,7 +99,7 @@ app.get('/recipe/:id', async (req, res) => {
         }
 
         random = () => { 
-            let randomResult = Math.random() * (2-0) + 0;
+            let randomResult = Math.random() * (3-0) + 0;
             return Math.floor(randomResult); 
             }  
         const randomNumber = random();
