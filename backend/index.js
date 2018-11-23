@@ -14,7 +14,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.static('public', {
+    setHeaders: function(res, path) { res.set("Cache-Control", "no-cache"); }
+}));
 
 
 const fs = require('fs');
@@ -134,14 +136,15 @@ app.get('/recipe/:id', async (req, res) => {
       }
     
     //   Write the binary audio content to a local file
-        fs.writeFile('public/output.mp3', response.audioContent, 'binary', err => {
-            if (err) {
-            console.error('ERROR:', err);
-            return;
-            }
+    fs.writeFileSync('public/output.mp3', response.audioContent, 'binary');//, err => {
+        //     if (err) {
+        //     console.error('ERROR:', err);
+        //     return;
+        //     }
             console.log('Audio content written to file: output.mp3');
-            res.json(recipieInfo);
-        });
+        //     res.json(recipieInfo);
+        // });
+    res.json(recipieInfo);
     });
        
     } catch (error) {
