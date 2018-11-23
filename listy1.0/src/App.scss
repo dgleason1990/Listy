@@ -2,6 +2,16 @@ body {
   font-family: 'Source Serif Pro', serif;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+button:focus {outline:0;}
+input:focus {outline:0;}
+
 nav {
   background-color: white;
   height: 100px;
