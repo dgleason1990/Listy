@@ -9,6 +9,6 @@ module.exports = [
     },
     {
         start: "Hey there... Larry the Listy Guy here! Well, if it isn't my two favourite programmers, David and Jake! Let's do some cooking... ",
-        finish: "........Enjoy the meal! I'm off to go find me some kangaroos"
+        finish: "........Enjoy the meal! By the way David... nice sweater. I'm off to go find me some kangaroos"
     }
 ]
